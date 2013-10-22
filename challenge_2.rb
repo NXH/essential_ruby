@@ -29,3 +29,8 @@ pv = gets.chomp.to_f
 # ====================
 # Your code goes here.
 # ====================
+
+loan_quotes.each do |quote_input|
+  payment = pmt(quote_input["rate"],nper,pv)
+  puts "At #{quote_input["bank"]} your payment will be #{payment}"
+end

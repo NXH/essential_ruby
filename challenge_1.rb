@@ -17,4 +17,20 @@
 # Your code to define the method goes here.
 # =========================================
 
+class Numeric #borrowed a method to convert float output to currency
+  def to_currency( pre_symbol='$', thousands=',', decimal='.',post_symbol=nil )
+    "#{pre_symbol}#{
+      ( "%.2f" % self ).gsub(
+        /(\d)(?=(?:\d{3})+(?:$|\.))/,
+        "\\1#{thousands}"
+      )
+    }#{post_symbol}"
+  end
+end
+
+def pmt(rate, nper, pv)
+  payment = (pv * rate * ((1 + rate)**nper)/((1 + rate)**nper - 1))
+  payment.to_currency
+end
+
 puts "Your monthly payment will be #{pmt(0.01, 60, 30000)}."
